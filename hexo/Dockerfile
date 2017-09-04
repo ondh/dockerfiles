@@ -9,6 +9,7 @@ RUN apk add --no-cache git && \
     npm config set unsafe-perm true && \
     npm install -g hexo-cli && \
     npm install hexo-server --save && \
+    rm -rf /blog/* && \
     hexo init /blog
 
 EXPOSE 4000
