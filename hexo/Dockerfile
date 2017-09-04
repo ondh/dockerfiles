@@ -10,8 +10,7 @@ RUN apk add --no-cache tzdata && \
 	apk del tzdata && \
     npm config set user 0 && \
     npm config set unsafe-perm true && \
-    npm install -g hexo-cli && \
-    npm clean cache --force
+    npm install -g hexo-cli
 
 EXPOSE 4000
 
