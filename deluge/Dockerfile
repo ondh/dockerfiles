@@ -17,6 +17,8 @@ RUN apk add --no-cache $PACKAGE && \
 COPY core.conf /deluge/core.conf
 COPY start.sh /start.sh
 
+RUN chmod +x /start.sh
+
 VOLUME ["/deluge/config"]
 VOLUME ["/deluge/downloads"]
 
