@@ -1,5 +1,5 @@
 FROM alpine:edge
-MAINTAINER Tonio "honooon@gmail.com"
+MAINTAINER Tonio
 
 ARG DELUGE_VERSION=1.3.15
 ARG PACKAGE="py-setuptools libtorrent-rasterbar py-chardet py-openssl py-mako py-twisted py-xdg py-pip"

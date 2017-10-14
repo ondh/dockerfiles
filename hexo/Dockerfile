@@ -1,5 +1,5 @@
 FROM node:alpine
-MAINTAINER Tonio "honooon@gmail.com"
+MAINTAINER Tonio
 
 WORKDIR /blog
 
