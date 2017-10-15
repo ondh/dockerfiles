@@ -8,6 +8,7 @@ ARG PY_PACKAGE="constantly incremental service_identity automat"
 WORKDIR /deluge
 
 COPY core.conf /deluge/core.conf
+COPY Streaming-0.8.1-py2.7.egg /deluge/Streaming-0.8.1-py2.7.egg
 COPY start.sh /start.sh
 
 # Install package using --no-cache to update index and remove unwanted files
@@ -32,9 +33,10 @@ VOLUME ["/deluge/downloads"]
 
 # Torrent port
 EXPOSE 53160
-EXPOSE 53160/udp
 # WebUI
 EXPOSE 8112
+# Stream
+EXPOSE 46123
 # Daemon
 EXPOSE 58846
 
