@@ -14,5 +14,5 @@ echo obssh:$USER_PASSWORD | chpasswd
 echo "ObfuscatedPort 22" >> /usr/local/etc/sshd_config
 echo "ObfuscateKeyword $OBFUSCATE_KEY" >> /usr/local/etc/sshd_config
 
-/usr/local/sbin/sshd -f /usr/local/etc/sshd_config &
+/usr/local/sbin/sshd -f /usr/local/etc/sshd_config -D
 wait
