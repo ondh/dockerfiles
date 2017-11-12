@@ -17,7 +17,7 @@ RUN apk add --no-cache $PACKAGE \
     && wget https://github.com/novnc/websockify/archive/v0.8.0.tar.gz \
     && tar -xzf v0.8.0.tar.gz \
     && mv websockify-0.8.0/ noVNC/utils/websockify \
-    && cp noVNC/vnc.html noVNC/index.html
+    && cp noVNC/vnc.html noVNC/index.html \
 	&& chmod +x /work/start.sh \
 	&& rm -rf /work/*.tar.gz
 
