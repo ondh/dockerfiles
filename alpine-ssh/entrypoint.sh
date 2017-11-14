@@ -14,4 +14,7 @@ if [ ! -d "/var/run/sshd" ]; then
   mkdir -p /var/run/sshd
 fi
 
+#try to set root password
+echo "root:${PASSWORD}" | chpasswd
+
 exec "$@"
