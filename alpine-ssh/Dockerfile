@@ -1,5 +1,5 @@
-FROM alpine:edge
-MAINTAINER tonio "honooon@gmail.com"
+FROM alpine:latest
+MAINTAINER Tonio
 
 ARG PACKAGE="openssh-server"
 ENV PASSWORD "alpine"
