@@ -18,7 +18,9 @@ fi
 echo "root:${PASSWORD}" | chpasswd
 
 #set root ssh key
-mkdir /root/.ssh
-echo ${SSH_KEYS} >> ~/.ssh/authorized_keys
+if [ ! -f "/root/.ssh/authorized_keys" ]; then
+  mkdir /root/.ssh
+  echo ${SSH_KEYS} >> /root/.ssh/authorized_keys
+fi
 
 exec "$@"
