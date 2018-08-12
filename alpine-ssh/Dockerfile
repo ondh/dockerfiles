@@ -3,6 +3,7 @@ MAINTAINER Tonio
 
 ARG PACKAGE="openssh-server"
 ENV PASSWORD "alpine"
+ENV SSH_KEYS ""
 
 WORKDIR /root
 

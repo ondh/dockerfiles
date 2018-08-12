@@ -17,4 +17,8 @@ fi
 #try to set root password
 echo "root:${PASSWORD}" | chpasswd
 
+#set root ssh key
+mkdir /root/.ssh
+echo ${SSH_KEYS} >> ~/.ssh/authorized_keys
+
 exec "$@"
