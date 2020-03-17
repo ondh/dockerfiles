@@ -14,6 +14,8 @@ RUN dnf module install nodejs -y \
     && rpm --import https://dl.yarnpkg.com/rpm/pubkey.gpg \
     && dnf install python3 yarn git openssh-server coreutils -y --allowerasing \
     && chmod +x /usr/local/bin/entrypoint.sh \
+    && mkdir ~/npm-global \
+    && npm config set prefix ~/npm-global -g \
     && rm -rf /etc/ssh/ssh_host_rsa_key /etc/ssh/ssh_host_dsa_key \
 	&& sed -i -e 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/g' /etc/ssh/sshd_config \
 	&& sed -i 's/#PubkeyAuthentication/PubkeyAuthentication/g' /etc/ssh/sshd_config \

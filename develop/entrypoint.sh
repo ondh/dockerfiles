@@ -31,4 +31,7 @@ if [ ! -f "/root/.ssh/authorized_keys" ]; then
   echo ${SSH_KEYS} >> /root/.ssh/authorized_keys
 fi
 
+#set npm global to PATH
+echo 'export PATH=~/npm-global/bin:$PATH' >> /root/.bashrc
+
 exec "$@"
