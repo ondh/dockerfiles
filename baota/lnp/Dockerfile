@@ -1,4 +1,4 @@
-FROM pch18/baota:clear
+FROM ondh/baota:clear
 LABEL maintainer="Tonio"
 
 RUN bash /www/server/panel/install/install_soft.sh 0 install nginx 1.17 \
@@ -7,5 +7,3 @@ RUN bash /www/server/panel/install/install_soft.sh 0 install nginx 1.17 \
     && yum clean all \
     && rm -rf /www/server/php/56/src \
     && rm -rf /www/server/nginx/src
-
-VOLUME ["/www"]

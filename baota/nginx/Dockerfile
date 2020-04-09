@@ -1,9 +1,7 @@
-FROM pch18/baota:clear
+FROM ondh/baota:clear
 LABEL maintainer="Tonio"
 
 RUN bash /www/server/panel/install/install_soft.sh 0 install nginx 1.17 \
     && echo '["linuxsys", "webssh", "nginx"]' > /www/server/panel/config/index.json \
     && yum clean all \
     && rm -rf /www/server/nginx/src
-
-VOLUME ["/www"]
