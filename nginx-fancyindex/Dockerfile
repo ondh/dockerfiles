@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:3.5
 LABEL maintainer="Tonio"
 
 ENV NGINX_VERSION 1.13.8
