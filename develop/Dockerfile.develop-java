@@ -1,15 +1,15 @@
 FROM centos:8
 LABEL maintainer="Tonio"
 
-ENV PASSWORD "develop"
+ENV PASSWORD "alpine"
 ENV SSH_KEYS ""
 
-WORKDIR /root/develop
+WORKDIR /develop
 
 ADD entrypoint.sh /usr/local/bin
 
 # Install package using --no-cache to update index and remove unwanted files
-RUN dnf module install nodejs -y \
+RUN dnf install java-11-openjdk -y \
     && curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo \
     && rpm --import https://dl.yarnpkg.com/rpm/pubkey.gpg \
     && dnf install python3 yarn git openssh-server coreutils -y --allowerasing \
@@ -22,15 +22,6 @@ RUN dnf module install nodejs -y \
 	&& echo fs.inotify.max_user_watches=524288 >> /etc/sysctl.conf \
 	&& alternatives --set python /usr/bin/python3 \
 	&& rm /run/nologin \
-    && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
-    && (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == systemd-tmpfiles-setup.service ] || rm -f $i; done) \
-    && rm -f /lib/systemd/system/multi-user.target.wants/* \
-    && rm -f /etc/systemd/system/*.wants/* \
-    && rm -f /lib/systemd/system/local-fs.target.wants/* \
-    && rm -f /lib/systemd/system/sockets.target.wants/*udev* \
-    && rm -f /lib/systemd/system/sockets.target.wants/*initctl* \
-    && rm -f /lib/systemd/system/basic.target.wants/* \
-    && rm -f /lib/systemd/system/anaconda.target.wants/* \
 	&& dnf clean all
 
 EXPOSE 22

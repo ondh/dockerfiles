@@ -1,0 +1,20 @@
+FROM ondh/develop:base
+LABEL maintainer="Tonio"
+
+ENV PASSWORD "develop"
+ENV SSH_KEYS ""
+
+WORKDIR /root/develop/node
+
+# Install package using --no-cache to update index and remove unwanted files
+RUN dnf module install nodejs -y \
+    && curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo \
+    && rpm --import https://dl.yarnpkg.com/rpm/pubkey.gpg \
+    && dnf install yarn -y --allowerasing \
+    && mkdir ~/npm-global \
+    && npm config set prefix ~/npm-global -g \
+	&& dnf clean all
+
+EXPOSE 22
+ENTRYPOINT ["entrypoint.sh"]
+CMD ["/usr/sbin/sshd","-D"]

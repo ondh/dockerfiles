@@ -9,18 +9,12 @@ WORKDIR /root/develop
 ADD entrypoint.sh /usr/local/bin
 
 # Install package using --no-cache to update index and remove unwanted files
-RUN dnf module install nodejs -y \
-    && curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo \
-    && rpm --import https://dl.yarnpkg.com/rpm/pubkey.gpg \
-    && dnf install python3 yarn git openssh-server coreutils -y --allowerasing \
+RUN dnf install git openssh-server coreutils -y --allowerasing \
     && chmod +x /usr/local/bin/entrypoint.sh \
-    && mkdir ~/npm-global \
-    && npm config set prefix ~/npm-global -g \
     && rm -rf /etc/ssh/ssh_host_rsa_key /etc/ssh/ssh_host_dsa_key \
 	&& sed -i -e 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/g' /etc/ssh/sshd_config \
 	&& sed -i 's/#PubkeyAuthentication/PubkeyAuthentication/g' /etc/ssh/sshd_config \
 	&& echo fs.inotify.max_user_watches=524288 >> /etc/sysctl.conf \
-	&& alternatives --set python /usr/bin/python3 \
 	&& rm /run/nologin \
     && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == systemd-tmpfiles-setup.service ] || rm -f $i; done) \

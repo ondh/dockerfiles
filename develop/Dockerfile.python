@@ -1,0 +1,16 @@
+FROM ondh/develop:base
+LABEL maintainer="Tonio"
+
+ENV PASSWORD "develop"
+ENV SSH_KEYS ""
+
+WORKDIR /root/develop/python
+
+# Install package using --no-cache to update index and remove unwanted files
+RUN dnf install python3 -y --allowerasing \
+	&& alternatives --set python /usr/bin/python3 \
+	&& dnf clean all
+
+EXPOSE 22
+ENTRYPOINT ["entrypoint.sh"]
+CMD ["/usr/sbin/sshd","-D"]
