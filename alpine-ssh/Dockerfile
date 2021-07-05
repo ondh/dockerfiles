@@ -1,5 +1,5 @@
-FROM alpine:latest
-MAINTAINER Tonio
+FROM alpine:3
+LABEL maintainer="Tonio"
 
 ARG PACKAGE="openssh-server"
 ENV PASSWORD "alpine"
