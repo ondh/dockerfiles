@@ -14,6 +14,8 @@ RUN apk add --no-cache $PACKAGE \
     && chmod +x /usr/local/bin/entrypoint.sh \
     && rm -rf /etc/ssh/ssh_host_rsa_key /etc/ssh/ssh_host_dsa_key \
 	&& sed -i -e 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/g' /etc/ssh/sshd_config \
+	&& sed -i 's/AllowTcpForwarding no/AllowTcpForwarding yes/g' /etc/ssh/sshd_config \
+	&& sed -i 's/X11Forwarding no/X11Forwarding yes/g' /etc/ssh/sshd_config \
 	&& sed -i 's/#PubkeyAuthentication/PubkeyAuthentication/g' /etc/ssh/sshd_config
 
 EXPOSE 22
