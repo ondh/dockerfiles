@@ -1,7 +1,7 @@
 FROM alpine:3
 LABEL maintainer="Tonio"
 
-ARG PACKAGE="openssh-server"
+ARG PACKAGE="openssh-server openssh-sftp-server"
 ENV PASSWORD "alpine"
 ENV SSH_KEYS ""
 
